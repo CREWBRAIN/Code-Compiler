@@ -1,0 +1,90 @@
+# CREWBRAIN Code Compiler Configuration
+
+supported_types:
+  - ".py"
+  - ".ts"
+  - ".js"
+  - ".md"
+  - ".txt"
+  - ".json"
+  - ".yaml"
+  - ".yml"
+  - ".toml"
+  - ".ini"
+  - ".sol"
+  - ".rs"
+
+include_folders: []
+exclude_folders:
+  - ".git"
+  - "node_modules"
+  - "venv"
+  - ".venv"
+  - "__pycache__"
+  - "dumps"
+  - "voice_samples"
+  - "target"
+  - "__pycache__"
+  - "__init__.py"
+  - ".vscode"
+
+max_file_size: 10000000  # 10 MB
+max_token_count: 10000  # Maximum number of tokens per file
+
+report_types:
+  "1":
+    name: "All Supported File Types"
+    file_types:
+      - "py"
+      - "ts"
+      - "js"
+      - "md"
+      - "txt"
+      - "json"
+      - "yaml"
+      - "yml"
+      - "toml"
+      - "ini"
+      - "sol"
+      - "rs"
+  "2":
+    name: "Python, TypeScript, JavaScript"
+    file_types:
+      - "py"
+      - "ts"
+      - "js"
+      - "sol"
+      - "rs"
+  "3":
+    name: "Markdown, Text, JSON, YAML, TOML, INI"
+    file_types:
+      - "md"
+      - "txt"
+      - "json"
+      - "yaml"
+      - "yml"
+      - "toml"
+      - "ini"
+      - "sol"
+      - "rs"
+
+results_dir: "output"
+repo_dir: "repos"
+config_path: "Code_Compiler.yml"
+
+required_packages:
+  rich: "rich"
+  PyYAML: "yaml"
+  tiktoken: "tiktoken"
+  GitPython: "git"
+  Flask: "flask"
+  streamlit: "streamlit"
+  aiofiles: "aiofiles"
+
+flask_settings:
+  debug: true
+
+logging:
+  console_level: "INFO"
+  file_level: "DEBUG"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
