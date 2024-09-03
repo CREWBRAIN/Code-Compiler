@@ -2,7 +2,7 @@
 
 **Download and Compile a Full Codebase Dump Report for any GitHub repo or folder.**
 
-This script will compile a codebase and generate a report of the number of lines, functions,  classes, methods, and variables in each file. It will also count the number of tokens in the codebase. The output is in markdown format and perfectly formatted to be dropped into your favorite long context LLM for analysis.
+This script will compile a codebase and generate a report in markdown including each file. It will also count the number of tokens in the codebase. The output is in markdown format and perfectly formatted to be dropped into your favorite long context LLM for analysis.
 
 It's a great way to explore and understand a codebase and has inadvertenly become a great way tool to archive our own codebase, and other open source projects not on github. It's also a great way to understand the complexity of a codebase and to identify potential security risks.
 
