@@ -213,7 +213,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-We appreciate your interest in the CREWBRAIN Code Compiler! Here are several ways you can support the project and get assistance:
+We appreciate your interest in Code Compiler! Here are several ways you can support the project and get assistance:
 
 ### Sponsorship
 
@@ -232,20 +232,19 @@ Your support helps us continue developing and maintaining this tool. Consider sp
 Need expert help with your AI and project development needs? We're here to assist you:
 
 - **AI Integration**: Let us help you integrate AI into your existing projects or develop new AI-powered solutions.
-- **Custom Development**: We can tailor the Code Compiler to your specific needs or create custom tools for your workflow.
+- **Custom Development**: We can tailor Code Compiler to your specific needs or create custom tools for your workflow.
 - **Consulting**: Get expert advice on code analysis, AI implementation, and software architecture.
 
 Contact us at david@crewbrain.ai for professional services or to discuss your project requirements.
 
 ### Spread the Word
 
-Help us grow by sharing the CREWBRAIN Code Compiler with your network:
+Help us grow by sharing the Code Compiler with your network:
 
 - Star the repository on GitHub
 - Share your experience on social media (Twitter, LinkedIn, etc.)
 - Write a blog post about how you use the tool in your workflow
 
 Your support, whether through sponsorship, community involvement, or spreading the word, is crucial for the continued development and improvement of this project. Thank you for being part of our community!
-
 
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white "crewbrainai")](https://www.patreon.com/crewbrainai)
