@@ -248,3 +248,13 @@ Help us grow by sharing the Code Compiler with your network:
 Your support, whether through sponsorship, community involvement, or spreading the word, is crucial for the continued development and improvement of this project. Thank you for being part of our community!
 
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white "crewbrainai")](https://www.patreon.com/crewbrainai)
+
+
+# Changelog:
+
+**9-4-2024 - Fixed token counting error for special tokens**
+
+- Modified the `count_tokens` method in the CodeCompiler class
+- Added `disallowed_special=()` parameter to tiktoken encoding
+- Allows all special tokens (including '<|endoftext|>') to be encoded as normal text
+- Resolves error when processing files containing special token strings

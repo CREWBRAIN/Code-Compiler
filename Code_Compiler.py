@@ -259,7 +259,7 @@ class CodeCompiler:
         This method is used to count the number of tokens in the given text.
         """
         encoding = tiktoken.encoding_for_model("gpt-3.5-turbo")
-        return len(encoding.encode(text))
+        return len(encoding.encode(text, disallowed_special=()))
 
     def generate_report(self, results: List[Dict[str, Any]], directory_name: str, report_type: int) -> str:
         """
