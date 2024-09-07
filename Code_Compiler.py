@@ -89,6 +89,8 @@ class GitProgress(RemoteProgress):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.pbar.stop()
 
+from datetime import datetime
+
 class CodeCompiler:
     """
     This class is used to compile the codebase of a given directory or GitHub repository.
@@ -389,7 +391,12 @@ class CodeCompiler:
         """
         results_dir = Path(self.config['results_dir'])
         results_dir.mkdir(exist_ok=True)
-        filename = f"{directory_name}_report_{report_type}.md"
+        
+        # Generate timestamp
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        # Create filename with timestamp
+        filename = f"{directory_name}_report_{report_type}_{timestamp}.md"
         filepath = results_dir / filename
 
         save_task = self.progress.add_task("[cyan]Saving report...", total=100)
@@ -434,8 +441,7 @@ class CodeCompiler:
                 with GitProgress() as progress:
                     git.Repo.clone_from(url, repo_path, progress=progress)
                 self.logger.info(f"Cloned new repository: {repo_path}")
-                console.print(f"Cloned new repository: {repo_path}", style="green")
-            
+                console.print            
             return repo_path
         except git.GitCommandError as e:
             self.logger.error(f"Git command error: {str(e)}")
