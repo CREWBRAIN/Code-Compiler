@@ -61,8 +61,13 @@ class GitProgress(RemoteProgress):
     """
     This class is used to display the progress of the GitHub repository downloader.
     """
-    def __init__(self):
+    def __init__(self, config_path: str, logger: logging.Logger):
         super().__init__()
+        self.config_path = config_path
+        self.logger = logger
+        self.config = self.load_config()
+        self.logger.info(f"Initialized with config: {self.config}")
+        self.base_directory = None
         self.pbar = Progress(
             SpinnerColumn(),
             TextColumn("[progress.description]{task.description}"),
@@ -70,7 +75,6 @@ class GitProgress(RemoteProgress):
             TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
         )
         self.task = self.pbar.add_task("[cyan]Downloading...", total=100)
-        self.base_directory = None
         self.download_speed = 0
 
     def update(self, op_code, cur_count, max_count=None, message=''):
@@ -108,7 +112,9 @@ class CodeCompiler:
         """
         try:
             with open(self.config_path, 'r', encoding='utf-8') as file:
-                return yaml.safe_load(file)
+                config = yaml.safe_load(file)
+            self.logger.info(f"Loaded configuration: {config}")
+            return config
         except FileNotFoundError:
             self.logger.warning(
                 f"Config file not found at {self.config_path}. Using default configuration."
@@ -192,32 +198,32 @@ class CodeCompiler:
         try:
             relative_path = path.relative_to(self.base_directory)
         except ValueError:
-            self.logger.warning(
-                f"Path {path} is not relative to base directory {self.base_directory}"
-            )
+            self.logger.warning(f"Path {path} is not relative to base directory {self.base_directory}")
             return False
 
-        path_parts = relative_path.parts
-
-        # Check if path is in excluded folder
-        if any(excluded in path_parts for excluded in self.config['exclude_folders']):
+        # Check if any part of the path matches excluded folders
+        if any(excluded in part for part in relative_path.parts for excluded in self.config['exclude_folders']):
+            self.logger.debug(f"Excluding path: {path}")
             return False
 
         # If include_folders is empty, include all folders except excluded ones
         if not self.config['include_folders']:
             return True
 
-        # Check if path is in included folder
-        return any(included in path_parts for included in self.config['include_folders'])
+        # Check if any part of the path matches included folders
+        return any(included in part for part in relative_path.parts for included in self.config['include_folders'])
 
     def scan_directory(self, directory: Path) -> Generator[Path, None, None]:
         """
         This method is used to scan a directory and its subdirectories for supported files.
         """
+        if not self.should_include_path(directory):
+            self.logger.info(f"Skipping excluded directory: {directory}")
+            return
+
         try:
             for item in directory.iterdir():
-                if item.is_dir() and self.should_include_path(item):
-                    self.logger.info(f"Scanning directory: {item}")
+                if item.is_dir():
                     yield from self.scan_directory(item)
                 elif (item.is_file() and
                       item.suffix in self.config['supported_types'] and
@@ -332,6 +338,8 @@ class CodeCompiler:
         """
         This method is used to run the report for the given source and report type.
         """
+        self.base_directory = Path(source).resolve()
+
         # Step 1: Determine the directory to analyze
         if source.startswith(("http://", "https://")):
             console.print("[bold cyan]Downloading repository...[/bold cyan]")
@@ -655,6 +663,7 @@ def main() -> None:
                     console.print(f"Failed to install {package}. Please install it manually.", style="bold red")
                     continue
 
+        os.system("cls" if os.name == "nt" else "clear")
         while True:
             choice = display_menu(compiler.config)
             exit_option = str(len(compiler.config['report_types']) + 2)
@@ -680,5 +689,4 @@ def main() -> None:
         console.print(Panel(f"An unexpected error occurred: {e}", style="bold red"))
 
 if __name__ == "__main__":
-    os.system("cls" if os.name == "nt" else "clear")
     main()
