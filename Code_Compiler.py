@@ -438,10 +438,10 @@ class CodeCompiler:
             else:
                 self.logger.info(f"Cloning new repository: {url}")
                 console.print(f"Cloning new repository: {url}", style="yellow")
-                with GitProgress() as progress:
-                    git.Repo.clone_from(url, repo_path, progress=progress)
+                git.Repo.clone_from(url, repo_path, progress=None)  # Remove GitProgress here
                 self.logger.info(f"Cloned new repository: {repo_path}")
-                console.print            
+                console.print(f"Cloned new repository: {repo_path}", style="green")
+            
             return repo_path
         except git.GitCommandError as e:
             self.logger.error(f"Git command error: {str(e)}")
