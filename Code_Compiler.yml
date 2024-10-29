@@ -1,12 +1,11 @@
 config_path: Code_Compiler.yml
 exclude_folders:
-- _pycache_
 - .venv
-- data
-- logs
-- output
-- Lib
-- site-packages
+- dify
+- .tmp
+- .git
+- .next
+- node_modules
 flask_settings:
   debug: true
 include_folders: []
@@ -22,7 +21,9 @@ report_types:
     file_types:
     - py
     - ts
+    - tsx
     - js
+    - jsx
     - md
     - txt
     - json

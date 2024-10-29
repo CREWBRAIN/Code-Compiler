@@ -207,6 +207,12 @@ Access the settings menu to customize:
 - For large codebases, consider using more specific report types or adjusting the max file size/token count, the code will automatically chunk and separate the files.
 - Regularly check for updates to ensure you have the latest features and optimizations
 
+## Roadmap
+
+* [X] Consolidate and compile into singular markdown file any folder or repo.
+* [ ] Comprehensive codebase understanding and analysis using LLM.
+  * [ ] 
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -248,7 +254,6 @@ Help us grow by sharing the Code Compiler with your network:
 Your support, whether through sponsorship, community involvement, or spreading the word, is crucial for the continued development and improvement of this project. Thank you for being part of our community!
 
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white "crewbrainai")](https://www.patreon.com/crewbrainai)
-
 
 # Changelog:
 
