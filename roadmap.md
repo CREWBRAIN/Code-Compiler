@@ -1,4 +1,6 @@
-# Codebase Analysis Prompts
+# Roadmap:
+
+# Adding some major functionality that will really complete the idea with Codebase Analysis Prompts:
 
 ## 1. Initial Architecture Overview
 
@@ -131,6 +133,7 @@ Save as 10-modernization.md.
 ```
 
 ## 11. File Structure Analysis
+
 ```
 Analyze the codebase structure and create a detailed map:
 1. Generate a tree structure of all directories and files
@@ -177,6 +180,7 @@ Save as 11-file-structure.md.
 ```
 
 ## 12. File Health Metrics
+
 ```
 For each file, evaluate and document:
 1. Lines of code
@@ -208,6 +212,7 @@ Save as 12-file-health-metrics.md.
 ```
 
 ## 13. File Relationship Map
+
 ```
 Create a dependency graph showing:
 1. Import/export relationships between files
